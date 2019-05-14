@@ -1,0 +1,29 @@
+{
+  "name": "vanilla-state",
+  "version": "1.0.0",
+  "description": "Vanilla JS State Management ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stevenferretti/vanilla-state.git"
+  },
+  "keywords": [
+    "vanilla",
+    "js",
+    "state",
+    "management"
+  ],
+  "author": "Steven Ferretti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stevenferretti/vanilla-state/issues"
+  },
+  "homepage": "https://github.com/stevenferretti/vanilla-state#readme",
+  "dependencies": {
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0"
+  }
+}
