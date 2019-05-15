@@ -1,7 +1,7 @@
 const equal = require('lodash.isequal');
 const clone = require('lodash.clonedeep');
 
-export class VanillaState {
+class VanillaState {
     
     constructor(stateObject, items) {
         this.objectHandler = {
@@ -74,3 +74,5 @@ export class VanillaState {
     }
     
 }
+
+module.exports = VanillaState;
