@@ -59,16 +59,18 @@ class VanillaState {
         }
     }
 
-    save(field) {
+    save(field, save = true) {
         if (this.objectHandler.items.includes(field)){
             this.objectHandler.stateObjectSave[field] = clone(this.objectHandler.stateObject[field]);
         }
-        this.stampVersion();
+        if (save){
+            this.stampVersion();
+        }
     }
 
     saveAll() {
         for (const field of this.objectHandler.items) {
-            this.save(field);
+            this.save(field, false);
         }
         this.stampVersion();
     }
