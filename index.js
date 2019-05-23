@@ -1,16 +1,18 @@
 const equal = require('lodash.isequal');
-const clone = require('lodash.clonedeep');
+const Eot = require('eloquent-object-tools');
+const eot = new(Eot);
 
 class VanillaState {
     
-    constructor(stateObject, items) {
+    constructor(stateObject, items, saveCallBack) {
         this.objectHandler = {
+            saveCallBack,
             stateObject,
-            stateObjectSave: clone(stateObject),
+            stateObjectSave: eot.clone(stateObject),
             items: (items || Object.keys(stateObject)),
             versionHistory: [] 
         }
-        this.stampVersion();
+        this.stampVersion(true);
     }
 
     get changes() {
@@ -42,14 +44,31 @@ class VanillaState {
     get versionHistory() {
         return this.objectHandler.versionHistory;
     }
+
+    revertToVersion(versionNumber) {
+        if (this.objectHandler.versionHistory[versionNumber]) {
+            this.objectHandler.stateObject = {
+                ...this.objectHandler.stateObject,
+                ...this.objectHandler.versionHistory[versionNumber]
+            }
+            this.saveAll();
+        }
+    }
     
-    stampVersion() {
-        this.objectHandler.versionHistory.push(clone(this.objectHandler.stateObjectSave));
+    stampVersion(initial) {
+        let savedObject = {};
+        for (const field of this.objectHandler.items) {
+            savedObject[field] = eot.clone(this.objectHandler.stateObjectSave[field]);
+        }
+        this.objectHandler.versionHistory.push(savedObject);
+        if (this.objectHandler.saveCallBack && (typeof this.objectHandler.saveCallBack === "function") && !initial){
+            this.objectHandler.saveCallBack(this.objectHandler.stateObjectSave);
+        }
     }
 
     revert(field) {
         if (this.objectHandler.items.includes(field)){
-            this.objectHandler.stateObject[field] = clone(this.objectHandler.stateObjectSave[field]);
+            this.objectHandler.stateObject[field] = eot.clone(this.objectHandler.stateObjectSave[field]);
         }
     }
 
@@ -61,7 +80,7 @@ class VanillaState {
 
     save(field, save = true) {
         if (this.objectHandler.items.includes(field)){
-            this.objectHandler.stateObjectSave[field] = clone(this.objectHandler.stateObject[field]);
+            this.objectHandler.stateObjectSave[field] = eot.clone(this.objectHandler.stateObject[field]);
         }
         if (save){
             this.stampVersion();

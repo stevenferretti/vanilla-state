@@ -1,6 +1,6 @@
 {
   "name": "vanilla-state",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Vanilla JS State Management ",
   "main": "index.js",
   "scripts": {
@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/stevenferretti/vanilla-state#readme",
   "dependencies": {
-    "lodash.clonedeep": "^4.5.0",
+    "eloquent-object-tools": "^1.0.3",
     "lodash.isequal": "^4.5.0"
   }
 }
