@@ -1,6 +1,6 @@
 {
   "name": "vanilla-state",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Vanilla JS State Management ",
   "main": "index.js",
   "scripts": {
