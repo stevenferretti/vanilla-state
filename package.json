@@ -23,7 +23,7 @@
   },
   "homepage": "https://github.com/stevenferretti/vanilla-state#readme",
   "dependencies": {
-    "eloquent-object-tools": "^1.0.3",
+    "eloquent-object-tools": "^1.0.4",
     "lodash.isequal": "^4.5.0"
   }
 }
